@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { collection, doc, getDocs, getDoc } from "firebase/firestore";
 import { ref, onValue } from "firebase/database";
 import firebaseConfig from "../../db";
-import { db } from "../App";
+import { db } from "./Main";
 
 export const ReadService = (props) => {
   const [service, setService] = useState([]);
@@ -23,13 +23,12 @@ export const ReadService = (props) => {
 
   useEffect(() => {
     getServices();
-  }, [service]);
+  }, []);
 
   return (
     <>
       {error && <h3>{error}</h3>}
       <>
-        <h1>Moton Huollot</h1>
 
         <div>
           <table style={{ textAlign: "left", marginLeft: "12%" }}>
