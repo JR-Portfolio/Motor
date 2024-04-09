@@ -14,7 +14,7 @@ import {
 import firebaseConfig from "../../db";
 import AddService from "./Add";
 import { ReadService } from "./Read";
-import Trips from "./Trips";
+import Trips from "./AddTrip";
 import { v4 as uuidv4 } from "uuid";
 
 // Initialize Firebase
@@ -44,38 +44,35 @@ function Main() {
   return (
     <>
       {error ? <h3>{error}</h3> : ""}
-      
-        <>
-      
-          <h3 style = {{marginLeft:"120px"}}>KTM 1290 SUPERADVENTURE S</h3>
 
-          <div key={moto.id}>
-            <table style={{ textAlign: "left", marginLeft: "20%" }}>
-              <tbody>
-                <tr>
-                  <td>Merkki: {moto.make}</td>
-                </tr>
-                <tr>
-                  <td>Malli: {moto.model}</td>
-                </tr>
-                <tr>
-                  <td>Väri: {moto.color}</td>
-                </tr>
-                <tr>
-                  <td>Km: {moto.km}</td>
-                </tr>
-                <tr>
-                  <td>Vuosi: {moto.year}</td>
-                </tr>
-                <tr>
-                  <td>Edellinen huolto: 31-3-2024</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </>
-      
+      <>
+        <h3 style={{ marginLeft: "120px" }}>KTM 1290 SUPERADVENTURE S</h3>
 
+        <div key={moto.id}>
+          <table style={{ textAlign: "left", marginLeft: "20%" }}>
+            <tbody>
+              <tr>
+                <td>Merkki: {moto.make}</td>
+              </tr>
+              <tr>
+                <td>Malli: {moto.model}</td>
+              </tr>
+              <tr>
+                <td>Väri: {moto.color}</td>
+              </tr>
+              <tr>
+                <td>Km: {moto.km}</td>
+              </tr>
+              <tr>
+                <td>Vuosi: {moto.year}</td>
+              </tr>
+              <tr>
+                <td>Edellinen huolto: 31-3-2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </>
     </>
   );
 }

@@ -7,9 +7,8 @@ export default function Header() {
       <Link className="site-logo" to="/">#JRLA</Link>
       <nav>   
         <Link to="/">Pääsivu</Link>
-        <Link to="/addService">Lisää huolto</Link>
-        <Link to="/readService">Huollot</Link>
-        <Link to="/addTrip">Lisää matka</Link>                
+        <Link to="/services">Huollot</Link>
+        <Link to="/trips">Matkat</Link>
       </nav>
     </header>
   );

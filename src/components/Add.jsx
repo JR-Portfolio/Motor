@@ -8,6 +8,7 @@ import {
   Checkbox,
 } from "@mui/material";
 
+import "../App.css"
 //import { doc, set, setDoc } from "firebase/firestore";
 import { db } from "./Main";
 import { collection, addDoc } from "firebase/firestore";
@@ -33,13 +34,11 @@ export default function Add(props) {
   };
 
   return (
-    <div className="App">
-      <Typography variant="h5">LISÄÄ HUOLTO</Typography>
-      <p></p>
+    <div className="inputForm">
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { mb: -5, width: "25ch" },
+          "& .MuiTextField-root": { mt: -5, width: "25ch" },
         }}
         noValidate
         autoComplete="off"

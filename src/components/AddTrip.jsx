@@ -12,7 +12,7 @@ import {
 import { db } from "./Main";
 import { collection, addDoc } from "firebase/firestore";
 
-export default function Trips(props) {
+export default function AddTrip(props) {
   const { application } = props;
   const [data, setData] = useState({});
 
@@ -33,9 +33,8 @@ export default function Trips(props) {
   };
 
   return (
-    <div className="App">
-      <Typography variant="h5">LISÄÄ TRIPPI (ekoe..)</Typography>
-      <p></p>
+    <div className="inputForm">
+
       <Box
         component="form"
         sx={{
@@ -46,7 +45,7 @@ export default function Trips(props) {
       >
         <TextField
           style={{ width: "200px", margin: "5px", mt: "-5" }}
-          id="from"
+          id="when"
           type="date"
           label="PVM"
           variant="outlined"
@@ -55,7 +54,7 @@ export default function Trips(props) {
         <br />
 
         <TextField
-          style={{ width: "300px", margin: "5px" }}
+          style={{ width: "200px", margin: "5px" }}
           id="matkaajat"
           type="text"
           label="Matkaajat"
