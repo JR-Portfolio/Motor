@@ -5,7 +5,7 @@ function Services() {
     <>
       <nav className="host-nav">
         <Link to="addService">Lisää Huolto</Link>
-        <Link to=".">Huollot</Link>
+        <Link to="readServices">Huollot</Link>
       </nav>
       <Outlet />
     </>

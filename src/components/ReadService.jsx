@@ -4,7 +4,7 @@ import { ref, onValue } from "firebase/database";
 import firebaseConfig from "../../db";
 import { db } from "./Main";
 
-export const ReadService = (props) => {
+const ReadService = (props) => {
   const [service, setService] = useState([]);
   const [error, setError] = useState("");
 
@@ -90,3 +90,5 @@ export const ReadService = (props) => {
     </>
   );
 };
+
+export default ReadService

@@ -5,7 +5,7 @@ function Trips() {
     <>
       <nav className="host-nav">
         <Link to="addTrip">Lisää matka</Link>
-        <Link to=".">Matkat</Link>
+        <Link to="showTrips">Matkat</Link>
       </nav>
       <Outlet />
     </>

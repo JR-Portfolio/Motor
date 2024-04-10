@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-  Typography,
   TextField,
   Button,
   Box,
@@ -13,8 +12,7 @@ import "../App.css"
 import { db } from "./Main";
 import { collection, addDoc } from "firebase/firestore";
 
-export default function Add(props) {
-  const { application } = props;
+export default function AddService() {
   const [data, setData] = useState({});
 
   const handleChange = (event) => {
