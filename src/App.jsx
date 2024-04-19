@@ -1,3 +1,4 @@
+import React, {useEffect} from "react"
 import Main from "./components/Main";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layouts/Layout";
@@ -19,6 +20,21 @@ import AuthRequired from "./Layouts/AuthRequired";
 import { AuthProvider } from "./components/AppContentext.jsx";
 
 function App() {
+ 
+  const resizeWindow = async () => {
+    // Set the desired width and height for the window
+    const desiredWidth = 400;
+    const desiredHeight = 500;
+
+    // Resize the window
+    window.resizeTo(desiredWidth, desiredHeight);
+  }
+
+  useEffect(() => {
+    resizeWindow()
+    }, [])
+
+
   return (
     <HashRouter>
       <AuthProvider>
