@@ -7,13 +7,15 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import "../App.css"
+import "../App.css";
 //import { doc, set, setDoc } from "firebase/firestore";
 import { db } from "./Main";
 import { collection, addDoc } from "firebase/firestore";
+import Error from "./ErrorPage";
 
 export default function AddService() {
   const [data, setData] = useState({});
+  const [error, setError] = useState("");
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -22,12 +24,22 @@ export default function AddService() {
 
   //https://firebase.google.com/docs/firestore/quickstart
   const saveService = async () => {
-    console.log("data: ", data)
+    console.log("data: ", data);
     try {
-      const huoltoRef = await addDoc(collection(db, "huolto"), data);
-      console.log("document written with id: ", huoltoRef.id);
+      if (Object.keys(data).length !== 0) {
+        const huoltoRef = await addDoc(collection(db, "huolto"), data);
+        if (!huoltoRef) {
+          throw {
+            message: "Vituiks mäni",
+            status: 400,
+            statusText: "Bad Request",
+          };
+        }
+        console.log("document written with id: ", huoltoRef.id);
+      }
     } catch (e) {
       console.error("Error adding document ", e);
+      setError(e);
     }
   };
 
@@ -41,6 +53,15 @@ export default function AddService() {
         noValidate
         autoComplete="off"
       >
+        {error && <Error />}
+        <TextField
+          style={{ width: "200px", margin: "5px", mt: "-5" }}
+          id="laite"
+          type="string"
+          label="Laite"
+          variant="outlined"
+          onChange={handleChange}
+        />
         <TextField
           style={{ width: "200px", margin: "5px", mt: "-5" }}
           id="km"
@@ -49,7 +70,7 @@ export default function AddService() {
           variant="outlined"
           onChange={handleChange}
         />
-        <br></br>
+
         <TextField
           style={{ width: "200px", margin: "5px" }}
           id="pvm"
@@ -59,16 +80,6 @@ export default function AddService() {
           onChange={handleChange}
         />
         <br />
-      <TextField
-          style={{ width: "200px", margin: "5px", mt: "-5" }}
-          id="kustannukset"
-          type="number"
-          label="Kustannukset"
-          variant="outlined"
-          onChange={handleChange}
-          />
-      
-        <br></br>
         <TextField
           style={{ width: "300px", margin: "5px" }}
           id="huoltaja"
@@ -77,7 +88,7 @@ export default function AddService() {
           variant="outlined"
           onChange={handleChange}
         />
-        <br />
+
         <TextField
           style={{ width: "300px", margin: "5px" }}
           id="huoltopaikka"
@@ -86,7 +97,7 @@ export default function AddService() {
           variant="outlined"
           onChange={handleChange}
         />
-        <br />
+
         <TextField
           style={{ width: "300px", margin: "5px" }}
           id="tilaus"
@@ -96,9 +107,18 @@ export default function AddService() {
           onChange={handleChange}
         />
         <br />
+        <TextField
+          style={{ width: "200px", margin: "5px", mt: "-5" }}
+          id="kustannukset"
+          type="number"
+          label="Kustannukset"
+          variant="outlined"
+          onChange={handleChange}
+        />
+
         <FormControlLabel
           style={{ width: "200px", margin: "5px" }}
-          control={<Checkbox id = "maksettu"/>}
+          control={<Checkbox id="maksettu" />}
           label="Maksettu"
           onChange={handleChange}
         />

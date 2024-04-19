@@ -12,12 +12,8 @@ import {
   getDoc,
 } from "firebase/firestore";
 import firebaseConfig from "../../db";
-//import AddService from "./AddService";
-//import { ReadService } from "./ShowTrips";
-//import Trips from "./AddTrip";
 import { v4 as uuidv4 } from "uuid";
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const motoCollection = collection(db, "ktm");
@@ -46,7 +42,7 @@ function Main() {
       {error ? <h3>{error}</h3> : ""}
 
       <>
-        <h3 style={{ marginLeft: "120px" }}>KTM 1290 SUPERADVENTURE S</h3>
+        <h3 style={{ marginLeft: "80px" }}>KTM 1290 SUPERADVENTURE S</h3>
 
         <div key={moto.id}>
           <table style={{ textAlign: "left", marginLeft: "20%" }}>

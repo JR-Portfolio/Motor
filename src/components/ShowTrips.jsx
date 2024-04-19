@@ -62,25 +62,13 @@ export const ShowTrips = () => {
             ) : (
               <tbody key={2}>
                 <tr>
+                  <td>{trips.id}</td>
                   <td>Kuvaus: {trips.kuvaus}</td>
-                </tr>
-                <tr>
                   <td>Milloin: {trips.when}</td>
-                </tr>
-                <tr>
                   <td>Mistä: {trips.from}</td>
-                </tr>
-
-                <tr>
                   <td>Minne: {trips.to}</td>
-                </tr>
-                <tr>
                   <td>Etapin pituus: {trips.etappi}</td>
-                </tr>
-                <tr>
                   <td>Kustannukset: {trips.kustannukset}</td>
-                </tr>
-                <tr>
                   <td>Matkaajat: {trips.matkaajat}</td>
                 </tr>
               </tbody>

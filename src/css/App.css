@@ -1,0 +1,152 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.host-nav {
+  display: flex;
+}
+
+.host-nav a {
+  text-decoration: none;
+  color: #4d4d4d;
+  font-weight: 700;
+  padding: 5px 20px;
+}
+
+.host-nav a:hover {
+  color: #161616;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.inputForm {
+  margin-top:30px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+table{
+  border-collapse:collapse;
+}
+
+tr{
+  border-bottom: 1px solid black;
+}
+
+.csv-kolumnit{
+  text-align: "left";
+  border: 1px solid;  
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+nav {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+header {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  padding-block: 10px;
+}
+
+header .site-logo {
+  color: black;
+  margin-right: auto;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 25px;
+}
+
+header a {
+  text-decoration: none;
+  color: #4D4D4D;
+  font-weight: 600;
+  padding: 5px 20px;
+}
+
+header a:hover {
+  color: #161616;
+  text-decoration: underline;
+}
+
+.reader-body{
+  margin-left: 20px;
+}
+
+th{
+  margin-top:5px;
+  padding:10px;
+}
+
+td {
+  padding: 15px;
+}
+
+input[type='file']{
+  margin-bottom:20px;
+}
+
+.newIssue-wrapper{
+  margin-left: 20px;
+  margin-right: 0 auto;
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 3px;
+  
+}
+
+.newIssue-form-row{
+  display: flex;
+  justify-content: flex-start;
+  padding: 1em;
+  font-size: 20px;
+}
+
+.newIssue-form-row > label{
+  padding: .5em 1em .5em 0;
+  flex: 1;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.newIssue-form-row > input{
+  flex:10;
+  padding:15px;
+  font-size: 20px;
+}
+
+#paintidrow{
+  background-color: lightcoral;
+}
