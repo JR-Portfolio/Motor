@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
 import bcrypt from "bcryptjs";
 
@@ -7,7 +7,7 @@ import { db } from "./Main";
 import { collection, addDoc } from "firebase/firestore";
 
 function AddUser() {
-      const navigate = useNavigate()
+  const navigate = useNavigate();
   const [newUserData, setNewUserData] = React.useState({
     firstname: "",
     lastname: "",
@@ -16,7 +16,7 @@ function AddUser() {
   });
 
   const addCredentials = async (newUserData) => {
-    const saltRounds = 10
+    const saltRounds = 10;
     console.log(saltRounds);
     const username = newUserData.username;
     const password = newUserData.password;
@@ -29,7 +29,7 @@ function AddUser() {
       unameValidate = true;
     }
 
-     bcrypt.hash(password, saltRounds, (err, hash) => {
+    bcrypt.hash(password, saltRounds, (err, hash) => {
       if (err && unameValidate) {
         console.error(err);
         throw {
@@ -40,10 +40,10 @@ function AddUser() {
       } else {
         console.log("Saving to the session storage ", hash);
         localStorage.setItem("hash", hash);
-        localStorage.setItem("salt", saltRounds)
+        localStorage.setItem("salt", saltRounds);
         localStorage.setItem("username", username);
-        newUserData.hash = hash
-        delete newUserData.password
+        newUserData.hash = hash;
+        delete newUserData.password;
         const userRef = addDoc(collection(db, "Users"), newUserData);
         if (!userRef) {
           throw {
@@ -54,10 +54,10 @@ function AddUser() {
         }
 
         resetForm();
-        navigate("/login")
+        navigate("/login");
       }
     });
-  }
+  };
 
   function resetForm() {
     setNewUserData({ firstname: "", lastname: "", username: "", password: "" });

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import viteLogo from "/vite.svg";
 import "../App.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -42,10 +41,10 @@ function Main() {
       {error ? <h3>{error}</h3> : ""}
 
       <>
-        <h3 style={{ marginLeft: "80px" }}>KTM 1290 SUPERADVENTURE S</h3>
+        <h3 style={{ marginLeft: "15%" }}>KTM 1290 SUPERADVENTURE S</h3>
 
         <div key={moto.id}>
-          <table style={{ textAlign: "left", marginLeft: "20%" }}>
+          <table style={{ textAlign: "left", marginLeft: "15%" }}>
             <tbody>
               <tr>
                 <td>Merkki: {moto.make}</td>

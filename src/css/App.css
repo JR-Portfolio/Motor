@@ -53,15 +53,17 @@ tr{
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-nav {
-  color: #61dafb;
+header nav {
+  color: #61dafb;  
+  justify-content: center;
+
 }
 
 @keyframes App-logo-spin {
@@ -74,30 +76,44 @@ nav {
 }
 
 header {
-  height: 110px;
+  width: 100%;
+  min-height: 110px;
   display: flex;
-  align-items: center;
-  padding-block: 10px;
+  flex-direction: row;
+  justify-content: space-between; 
+  padding-block: 10px;  
+  
 }
 
 header .site-logo {
-  color: black;
+  color: darkred;
+  margin-left:0%;
   margin-right: auto;
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
+
 }
 
 header a {
-  text-decoration: none;
+  text-decoration:none;
   color: #4D4D4D;
   font-weight: 600;
   padding: 5px 20px;
 }
 
+.signed a:hover {
+  color: red;
+}
+
 header a:hover {
   color: #161616;
   text-decoration: underline;
+}
+
+.hoveredText {
+  font-size: small;
+  color: red;
 }
 
 .reader-body{

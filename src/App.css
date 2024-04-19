@@ -76,11 +76,11 @@ nav {
 header {
   height: 110px;
   display: flex;
-  align-items: center;
+  justify-content:end;
   padding-block: 10px;
 }
 
-header .site-logo {
+header .site-logo {  
   color: black;
   margin-right: auto;
   text-transform: uppercase;

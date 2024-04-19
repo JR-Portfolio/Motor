@@ -55,7 +55,6 @@ const Login = () => {
       username.includes("@")
     ) {
       unameValidate = true;
-      console.log("username is ", unameValidate);
     }
 
     const storedHash = localStorage.getItem("hash");
@@ -67,13 +66,19 @@ const Login = () => {
         setLoggedIn(result);
         localStorage.setItem("loggedIn", true);
         localStorage.setItem("username", username);
+        localStorage.setItem("firsname", users.firstname);
         const updateUserRef = doc(db, "Users", docId);
         updateDoc(updateUserRef, {
-          loggedIn: result,
+          loggedIn: true,
         });
       }
 
       if (!result) {
+        const updateUserRef = doc(db, "Users", docId);
+        updateDoc(updateUserRef, {
+          loggedIn: false,
+        });
+
         throw {
           message: "The password validation failed",
           statusText: "Invalid password",
@@ -99,27 +104,29 @@ const Login = () => {
   return (
     <div>
       {!loggedIn && (
-        <form onSubmit={handleSubmit} className="login-form">
-          <input
-            name="username"
-            onChange={handleChange}
-            type="email"
-            placeholder="Email address"
-            value={loginFormData.username}
-          />
-          <input
-            name="password"
-            onChange={handleChange}
-            type="password"
-            placeholder="Password"
-            value={loginFormData.password}
-          />
-          <button>Log in</button>
-        </form>
+        <div className="login-container">
+          <form onSubmit={handleSubmit} className="login-form">
+            <input
+              name="username"
+              onChange={handleChange}
+              type="email"
+              placeholder="Sähköposti - käyttäjätunnuksena"
+              value={loginFormData.username}
+            />
+            <input
+              name="password"
+              onChange={handleChange}
+              type="password"
+              placeholder="Salasana (salataan)"
+              value={loginFormData.password}
+            />
+            <button>Kirjaudu</button>
+          </form>
+        </div>
       )}
       {loggedIn && <Main />}
     </div>
   );
 };
 
-export default Login
+export default Login;
