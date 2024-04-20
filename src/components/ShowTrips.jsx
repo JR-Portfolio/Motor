@@ -31,7 +31,7 @@ export const ShowTrips = () => {
       {error && <h3>{error}</h3>}
       <>
         <div>
-          <table style={{ textAlign: "left", marginLeft: "12%" }}>
+          <table style={{ textAlign: "left", marginLeft: "0%", fontSize: "8px" }}>
             {trips.length === 1 ? (
               trips.map((t) => (
                 <tbody key={t.id}>

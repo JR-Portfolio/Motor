@@ -62,6 +62,7 @@ tr{
 
 nav {
   color: #61dafb;
+  margin-right:5px;
 }
 
 @keyframes App-logo-spin {

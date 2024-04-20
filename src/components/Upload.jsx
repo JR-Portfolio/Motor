@@ -6,13 +6,14 @@ import "../css/App.css";
 
 function Upload() {
   const [imageUpload, setImageUpload] = useState(null);
+  const [folder, setFolder] = useState(null);
   const uploadImage = () => {
     if (imageUpload === null) return;
 
-    const fileRef = ref(storage, `Test/${imageUpload.name + v4()}`);
+    const fileRef = ref(storage, `${folder}/${imageUpload.name + v4()}`);
     uploadBytes(fileRef, imageUpload).then(() => {
       alert("Image uploaded");
-      setImageUpload(null)
+      setImageUpload(null);
     });
   };
 
@@ -22,7 +23,19 @@ function Upload() {
         type="file"
         onChange={(event) => setImageUpload(event.target.files[0])}
       />
-      <button onClick={uploadImage}>Lataa kuva</button>
+      <input
+        required
+        type="text"
+        onChange={(event) => setFolder(event.target.value)}
+        placeholder="Kansio mihin ladataan"
+      />
+
+      <button
+        style={{ marginTop: "10px", backgroundColor: "gray" }}
+        onClick={uploadImage}
+      >
+        Lataa kuva
+      </button>
     </div>
   );
 }

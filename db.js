@@ -6,6 +6,7 @@ const firebaseConfig = {
   storageBucket: "moto-b6666.appspot.com",
   messagingSenderId: "93963061585",
   appId: "1:93963061585:web:4f41bee4e90589bbf7ab70",
+  userId: "kBzJuZ36HuSgLVbaZSO9YzMepOu1"
 };
 
 

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import ImageLogin from "/avatar-icon.png";
 import ImageLogout from "/logout.png";
 import Upload from "/upload.png";
+import Home from "/Home.png";
+import Travel from "/travel.png"
+import Service from "/service.png"
 import AddUser from "/addUser.png";
 import Signed from "/signed.png";
 import { useAuth } from "../components/AppContentext";
@@ -32,9 +35,9 @@ export default function Header() {
 
         {signed && (
           <>
-            <Link to="/">Pääsivu</Link>
-            <Link to="/services">Huollot</Link>
-            <Link to="/trips">Matkat</Link>
+            <Link to="/"><img src={Home} /></Link>
+            <Link to="/services"><img src={Service} /></Link>
+            <Link to="/trips"><img src = {Travel} /></Link>
             <Link to="/galleria">
               <img src={Upload} width="48" height="48" />
             </Link>
