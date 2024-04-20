@@ -53,17 +53,15 @@ tr{
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-header nav {
-  color: #61dafb;  
-  justify-content: center;
-
+nav {
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -76,44 +74,30 @@ header nav {
 }
 
 header {
-  width: 100%;
-  min-height: 110px;
+  height: 110px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between; 
-  padding-block: 10px;  
-  
+  justify-content:end;
+  padding-block: 10px;
 }
 
-header .site-logo {
-  color: darkred;
-  margin-left:0%;
+header .site-logo {  
+  color: black;
   margin-right: auto;
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
-
 }
 
 header a {
-  text-decoration:none;
+  text-decoration: none;
   color: #4D4D4D;
   font-weight: 600;
   padding: 5px 20px;
 }
 
-.signed a:hover {
-  color: red;
-}
-
 header a:hover {
   color: #161616;
   text-decoration: underline;
-}
-
-.hoveredText {
-  font-size: small;
-  color: red;
 }
 
 .reader-body{
@@ -165,4 +149,14 @@ input[type='file']{
 
 #paintidrow{
   background-color: lightcoral;
+}
+
+.uploader {
+  display:flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-left:20%;
+  margin-right:20%;
+  color: black;
+  background-color: antiquewhite;
 }

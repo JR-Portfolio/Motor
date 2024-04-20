@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import "../App.css";
+import "../css/App.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage"
 import {
   getFirestore,
   collection,
@@ -14,6 +15,8 @@ import firebaseConfig from "../../db";
 import { v4 as uuidv4 } from "uuid";
 
 const app = initializeApp(firebaseConfig);
+export const storage = getStorage(app)
+
 const db = getFirestore(app);
 const motoCollection = collection(db, "ktm");
 

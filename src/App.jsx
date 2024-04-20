@@ -18,6 +18,7 @@ import Logout from "./components/Logout";
 import AddUser from "./components/AddUser.jsx";
 import AuthRequired from "./Layouts/AuthRequired";
 import { AuthProvider } from "./components/AppContentext.jsx";
+import Upload from "./components/Upload.jsx";
 
 function App() {
  
@@ -58,6 +59,8 @@ function App() {
             </Route>
 
             <Route path="addUser" element={<AddUser key={nanoid()} />} />
+            
+            <Route path="galleria" element={<Upload key={nanoid()} />} />
 
             <Route path="trips" element={<TripLayout key={nanoid} />}>
               <Route index element={<ShowTrips key={nanoid()} />} />

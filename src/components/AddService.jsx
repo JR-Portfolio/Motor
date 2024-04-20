@@ -7,7 +7,7 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import "../App.css";
+import "../css/App.css";
 //import { doc, set, setDoc } from "firebase/firestore";
 import { db } from "./Main";
 import { collection, addDoc } from "firebase/firestore";
