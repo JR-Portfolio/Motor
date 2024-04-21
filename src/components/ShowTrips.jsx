@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+//import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
 //import { ref, onValue } from "firebase/database";
 //import firebaseConfig from "../../db";
 import { db } from "./Main";

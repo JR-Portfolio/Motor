@@ -4,7 +4,8 @@ import "../css/Login.css";
 import bcrypt from "bcryptjs";
 
 import { db } from "./Main";
-import { collection, addDoc } from "firebase/firestore";
+//import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
 
 function AddUser() {
   const navigate = useNavigate();
