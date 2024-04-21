@@ -8,7 +8,6 @@ import {
   Checkbox,
 } from "@mui/material";
 
-//import { doc, set, setDoc } from "firebase/firestore";
 import { db } from "./Main";
 import { collection, addDoc } from "firebase/firestore";
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "./AppContentext";
-
 import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
 import bcrypt from "bcryptjs";
@@ -25,7 +24,6 @@ const Login = () => {
   const [users, setUsers] = useState([]);
 
   const userRef = collection(db, "Users");
-
   const getUsers = async () => {
     try {
       const querySnapshot = await getDocs(userRef);
@@ -118,7 +116,7 @@ const Login = () => {
               name="password"
               onChange={handleChange}
               type="password"
-              placeholder="Salasana (salataan)"
+              placeholder="Salasana"
               value={loginFormData.password}
             />
             <button>Kirjaudu</button>

@@ -3,6 +3,8 @@ import "../css/App.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { initializeApp } from "firebase/app";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 import { getStorage } from "firebase/storage";
 import {
   getFirestore,
@@ -15,10 +17,19 @@ import firebaseConfig from "../../db";
 import { v4 as uuidv4 } from "uuid";
 
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 export const storage = getStorage(app);
 
 const db = getFirestore(app);
-const motoCollection = collection(db, "ktm");
+//const motoCollection = collection(db, "ktm");
+
+onAuthStateChanged(auth, (user) => {
+  if (user != null) {
+    console.log(`User ${user} logged in`);
+  } else {
+    console.log(`Firebase user not found`);
+  }
+});
 
 function Main() {
   const [moto, setMoto] = useState([]);
