@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "../css/Login.css";
 import bcrypt from "bcryptjs";
 import Main from "./Main";
-import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+//import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { doc, collection, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
 import { db } from "./Main";
 import Header from "../Layouts/Header";
 import Logout from "./Logout";
