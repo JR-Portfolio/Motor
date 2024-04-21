@@ -12,13 +12,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 */
 
-import {
+/*import {
   getFirestore,
   collection,
   doc,
   getDocs,
   getDoc,
-} from "firebase/firestore";
+} from "firebase/firestore";*/
 import firebaseConfig from "../../db";
 import { v4 as uuidv4 } from "uuid";
 
