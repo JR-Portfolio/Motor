@@ -8,7 +8,7 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { db } from "./Main";
+import { db } from "../firebase";
 //import { collection, addDoc } from "firebase/firestore";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
 

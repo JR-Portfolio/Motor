@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
-//import { collection, doc, getDocs, getDoc } from "firebase/firestore";
-import { collection, doc, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
-//import { ref, onValue } from "firebase/database";
-import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"
-import firebaseConfig from "../../db";
-import { db } from "./Main";
+import { useState, useEffect } from "react";
+
+import {
+  collection,
+  getDocs,
+} from "firebase/firestore";;
+
+import {
+  ref,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
+
+import { db } from "../firebase";
 
 const ReadService = (props) => {
   const [service, setService] = useState([]);
@@ -20,6 +26,7 @@ const ReadService = (props) => {
       });
     } catch (error) {
       console.error("Error fetching data: ", error);
+      setError(error)
     }
   };
 

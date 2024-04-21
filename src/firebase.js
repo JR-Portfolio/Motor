@@ -1,4 +1,9 @@
 
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_JRLA_MOTO_API_KEY,
   authDomain: import.meta.env.VITE_JRLA_MOTO_AUTH_DOMAIN,
@@ -8,4 +13,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_JRLA_MOTO_APP_ID,
 };
 
-export default firebaseConfig;
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
