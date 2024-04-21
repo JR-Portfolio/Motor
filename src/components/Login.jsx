@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { useAuth } from "./AppContentext";
 
 import { useNavigate } from "react-router-dom";
@@ -41,6 +40,7 @@ const Login = () => {
     }
   };
 
+  console.log(`Api key: ${import.meta.env.VITE_JRLA_MOTO_API_KEY}`)
   useEffect(() => {
     getUsers();
   }, []);
@@ -105,6 +105,7 @@ const Login = () => {
     <div>
       {!loggedIn && (
         <div className="login-container">
+        
           <form onSubmit={handleSubmit} className="login-form">
             <input
               name="username"

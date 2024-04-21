@@ -29,7 +29,6 @@ const ReadService = (props) => {
     <>
       {error && <h3>{error}</h3>}
       <>
-
         <div>
           <table style={{ textAlign: "left", marginLeft: "12%" }}>
             {service.length === 1 ? (
@@ -91,4 +90,4 @@ const ReadService = (props) => {
   );
 };
 
-export default ReadService
+export default ReadService;
