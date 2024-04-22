@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "./AppContentext";
 import { useNavigate } from "react-router-dom";
-import "../css/Login.css";
 import bcrypt from "bcryptjs";
 import Main from "./Main";
 import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
-//import { doc, collection, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
-import { db } from "../firebase";
-import Header from "../Layouts/Header";
-import Logout from "./Logout";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { db, auth } from "../firebase";
+import "../css/Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
   const { setSigned } = useAuth();
-
   const [loginFormData, setLoginFormData] = useState({
     username: "",
     password: "",
@@ -23,8 +20,8 @@ const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
-
   const userRef = collection(db, "Users");
+
   const getUsers = async () => {
     try {
       const querySnapshot = await getDocs(userRef);
@@ -39,7 +36,8 @@ const Login = () => {
     }
   };
 
-  console.log(`Api key: ${import.meta.env.VITE_JRLA_MOTO_API_KEY}`)
+  
+  console.log(`Api key: ${import.meta.env.VITE_JRLA_MOTO_API_KEY}`);
   useEffect(() => {
     getUsers();
   }, []);
@@ -87,10 +85,24 @@ const Login = () => {
     });
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    credentials(loginFormData);
-  }
+    await signInWithEmailAndPassword(
+      auth,
+      loginFormData.username,
+      loginFormData.password
+    )
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User", user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -104,7 +116,6 @@ const Login = () => {
     <div>
       {!loggedIn && (
         <div className="login-container">
-        
           <form onSubmit={handleSubmit} className="login-form">
             <input
               name="username"

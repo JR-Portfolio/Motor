@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase"
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -8,7 +9,15 @@ const AuthProvider = ({ children }) => {
   const [firstname, setFirstName] = useState();
 
   useEffect(() => {
-    setSigned(localStorage.getItem("loggedIn") === "true");
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setSigned(true)
+      }
+    });
+  }, []);
+
+
+  useEffect(() => {    
     setSigner(localStorage.getItem("username"));
     setFirstName(localStorage.getItem("firstname"));
   }, []);
