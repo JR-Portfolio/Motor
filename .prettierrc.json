@@ -1,0 +1,11 @@
+{
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+  "arrowParens": "always",
+  "prettier.spaceBeforeFunctionParen": true,
+  "bracketSpacing": true,
+  "useTabs": true,
+  "semi": false,
+  "tabWidth": 4,
+  "singleAttributePerLine":true
+}

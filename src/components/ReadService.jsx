@@ -1,102 +1,80 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
+import Error from "./ErrorPage"
+import PopupWithLongText from "./PopUp"
+import { collection, getDocs } from "firebase/firestore"
+import Link from "@mui/material/Link"
+import { useNavigate } from "react-router-dom"
+import { db } from "../firebase"
 
-import {
-  collection,
-  getDocs,
-} from "firebase/firestore";;
+const ReadService = () => {
+	const [service, setService] = useState([])
+	const [error, setError] = useState("")
+	const navigate = useNavigate()
 
-import {
-  ref,
-  onValue,
-} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
+	const getServices = async () => {
+		try {
+			const huoltoRef = collection(db, "huolto")
+			const querySnapshot = await getDocs(huoltoRef)
+			const data = querySnapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}))
+			setService(data)
 
-import { db } from "../firebase";
+			console.log("service data: ", data)
+		} catch (error) {
+			console.error("Error fetching data: ", error)
+			setError(error)
+		}
+	}
 
-const ReadService = (props) => {
-  const [service, setService] = useState([]);
-  const [error, setError] = useState("");
+	useEffect(() => {
+		getServices()
+	}, [])
 
-  const getServices = async () => {
-    try {
-      const huoltoRef = collection(db, "huolto");
-      const querySnapshot = await getDocs(huoltoRef);
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        setService(doc.data());
-      });
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-      setError(error)
-    }
-  };
+	console.log("ReadServices, ", service)
+	if (!service) {
+		throw {
+			message: "The password validation failed",
+			statusText: "Invalid password",
+			status: 403,
+		}
+	}
 
-  useEffect(() => {
-    getServices();
-  }, []);
+	const showPopUp = (text) => {
+		navigate("popUp", { state: { text: text} })
+	}
 
-  return (
-    <>
-      {error && <h3>{error}</h3>}
-      <>
-        <div>
-          <table style={{ textAlign: "left", marginLeft: "12%" }}>
-            {service.length === 1 ? (
-              service.map((s) => (
-                <tbody key={s.id}>
-                  <tr>
-                    <td>Huolto: {s.huolto}</td>
-                  </tr>
-                  <tr>
-                    <td>Km: {s.km}</td>
-                  </tr>
+	return (
+		<>
+			{error && <h3>{error}</h3>}
+			<>
+				<div>
+					<table style={{ textAlign: "left", marginLeft: "7%" }}>
+						{service.map((s) => (
+							<tbody key={s.id}>
+								<tr>
+									{s.huolto.length > 50 ? (
+										<td onClick={ () => showPopUp(s.huolto)}>
+											Näytä teksti
+										</td>
+									) : (
+										<td>{s.huolto}</td>
+									)}
+									<td>Km: {s.km}</td>
+									<td>Huoltopaikka: {s.huoltopaikka}</td>
+									<td>Kustannukset: {s.kustannukset}</td>
+									<td>Maksettu: {s.maksettu}</td>
+									<td>Huolto pvm: {s.pvm}</td>
+									<td>Huolto pvm: {s.huoltaja}</td>
+								</tr>
+							</tbody>
+						))}
+					</table>
+				</div>
+			</>
+		</>
+	)
+}
 
-                  <tr>
-                    <td>Huoltopaikka: {s.huoltopaikka}</td>
-                  </tr>
-                  <tr>
-                    <td>Kustannukset: {s.kustannukset}</td>
-                  </tr>
-                  <tr>
-                    <td>Maksettu: {s.maksettu}</td>
-                  </tr>
-                  <tr>
-                    <td>Huolto pvm: {s.pvm}</td>
-                  </tr>
-                  <tr>
-                    <td>Huolto pvm: {s.huoltaja}</td>
-                  </tr>
-                </tbody>
-              ))
-            ) : (
-              <tbody key={2}>
-                <tr>
-                  <td>Huolto: {service.huolto}</td>
-                </tr>
-                <tr>
-                  <td>Km: {service.km}</td>
-                </tr>
-                <tr>
-                  <td>Huoltopaikka: {service.huoltopaikka}</td>
-                </tr>
-                <tr>
-                  <td>Kustannukset: {service.kustannukset}</td>
-                </tr>
-                <tr>
-                  <td>Maksettu: {service.maksettu}</td>
-                </tr>
-                <tr>
-                  <td>Huolto pvm: {service.pvm}</td>
-                </tr>
-                <tr>
-                  <td>Huolto pvm: {service.huoltaja}</td>
-                </tr>
-              </tbody>
-            )}
-          </table>
-        </div>
-      </>
-    </>
-  );
-};
-
-export default ReadService;
+export default ReadService

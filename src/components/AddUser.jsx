@@ -1,20 +1,26 @@
-import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db, auth } from "../firebase";
+
+//import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
 import "../css/Login.css";
 import bcrypt from "bcryptjs";
 
-import { db } from "../firebase";
-//import { collection, addDoc } from "firebase/firestore";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
-
 function AddUser() {
   const navigate = useNavigate();
-  const [newUserData, setNewUserData] = React.useState({
+  const [newUserData, setNewUserData] = useState({
     firstname: "",
     lastname: "",
     username: "",
     //password: "",
   });
+  const [error, setError] = useState(null);
 
   const addCredentials = async (newUserData) => {
     const saltRounds = 10;
@@ -64,11 +70,28 @@ function AddUser() {
     setNewUserData({ firstname: "", lastname: "", username: "", password: "" });
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addCredentials(newUserData);
+    //addCredentials(newUserData);
+    await createUserWithEmailAndPassword(
+      auth,
+      newUserData.username,
+      newUserData.password
+    )
+      .then((userCredential) => {
+        const user = userCredential.user;
+        alert(`The new user ${newUserData.username} created`);
+        console.log(user);
+        navigate("/login");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setError(errorMessage);
+      });
     resetForm();
-  }
+  };
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -80,41 +103,43 @@ function AddUser() {
 
   return (
     <div className="login-container">
-      <h3>Lisää käyttäjä</h3>
-      <form onSubmit={handleSubmit} className="login-form">
-        <input
-          name="firstname"
-          onChange={handleChange}
-          type="text"
-          placeholder="Etunimi"
-          value={newUserData.firstname}
-        />
-        <br />
-        <input
-          name="lastname"
-          onChange={handleChange}
-          type="text"
-          placeholder="Sukunimi"
-          value={newUserData.lastname}
-        />
-        <br />
-        <input
-          name="username"
-          onChange={handleChange}
-          type="email"
-          placeholder="Email address / username"
-          value={newUserData.username}
-        />
-        <br />
-        <input
-          name="password"
-          onChange={handleChange}
-          type="password"
-          placeholder="Salasana"
-          value={newUserData.password}
-        />
-        <button>Lisää käyttäjä</button>
-      </form>
+      {!error && (
+        <form onSubmit={handleSubmit} className="login-form">
+          <input
+            name="firstname"
+            onChange={handleChange}
+            type="text"
+            placeholder="Etunimi"
+            value={newUserData.firstname}
+          />
+          <br />
+          <input
+            name="lastname"
+            onChange={handleChange}
+            type="text"
+            placeholder="Sukunimi"
+            value={newUserData.lastname}
+          />
+          <br />
+          <input
+            name="username"
+            onChange={handleChange}
+            type="email"
+            placeholder="Email address / username"
+            value={newUserData.username}
+          />
+          <br />
+          <input
+            name="password"
+            onChange={handleChange}
+            type="password"
+            placeholder="Salasana"
+            value={newUserData.password}
+          />
+          <button>Lisää käyttäjä</button>
+        </form>
+      )}{" "}
+      :{}
     </div>
   );
 }

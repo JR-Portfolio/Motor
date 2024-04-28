@@ -12,7 +12,7 @@ export const ShowTrips = () => {
       const querySnapshot = await getDocs(tripsRef);
       querySnapshot.forEach((doc) => {
         console.log(doc.id, " => ", doc.data());
-        setTrip(doc.data());
+        setTrip([...doc.data(), doc.data()]);
       });
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -35,24 +35,11 @@ export const ShowTrips = () => {
                 <tbody key={t.id}>
                   <tr>
                     <td>Kuvaus: {t.kuvaus}</td>
-                  </tr>
-                  <tr>
                     <td>Milloin: {t.when}</td>
-                  </tr>
-                  <tr>
                     <td>Mistä: {t.from}</td>
-                  </tr>
-
-                  <tr>
-                    <td>Minne: {t.to}</td>
-                  </tr>
-                  <tr>
-                    <td>Etapin pituus: {t.etappi}</td>
-                  </tr>
-                  <tr>
-                    <td>Kustannukset: {t.kustannukset}</td>
-                  </tr>
-                  <tr>
+                    <td>Minne: {t.to}</td>                  
+                    <td>Etapin pituus: {t.etappi}</td>                  
+                    <td>Kustannukset: {t.kustannukset}</td>                  
                     <td>Matkaajat: {t.matkaajat}</td>
                   </tr>
                 </tbody>

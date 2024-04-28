@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ImageLogin from "/avatar-icon.png";
 import ImageLogout from "/logout.png";
@@ -18,6 +18,7 @@ export default function Header() {
   const handleHover = () => {
     setIsHovered(!isHovered);
   };
+  console.log("Header component signed: ", signed)
 
   return (
     <header>
