@@ -54,8 +54,12 @@ const ReadService = () => {
 						{service.map((s) => (
 							<tbody key={s.id}>
 								<tr>
+									<td>{s.laite}</td>
 									{s.huolto.length > 20 ? (
-										<td style = {{color: "red"}}onClick={ () => showPopUp(s.huolto)}>
+										<td
+											style={{ color: "red" }}
+											onClick={() => showPopUp(s.huolto)}
+										>
 											Näytä teksti
 										</td>
 									) : (

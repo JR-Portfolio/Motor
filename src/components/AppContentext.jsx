@@ -1,9 +1,4 @@
-import {
-	useEffect,
-	useState,
-	createContext,
-	useContext,
-} from "react"
+import { useEffect, useState, createContext, useContext } from "react"
 import { app } from "../firebase"
 import "firebase/auth"
 import { useNavigate } from "react-router-dom"
@@ -19,13 +14,11 @@ const AuthProvider = ({ children }) => {
 	const [firstname, setFirstName] = useState()
 	const navigate = useNavigate()
 
-/*
 	useEffect(() => {
 		if (!signed) {
 			navigate("/login")
 		}
 	}, [signed])
-*/
 
 	useEffect(() => {
 		app.auth?.onAuthStateChanged((authUser) => {
@@ -39,6 +32,16 @@ const AuthProvider = ({ children }) => {
 			}
 		})
 	}, [user])
+
+	useEffect(() => {
+		if (signed) {
+			setTimeout(() => {
+				setSigned(false)
+				navigate("logout")
+			}, [1800000])
+		}
+    console.log("5 sekuntti kulunut, morot")
+	}, [signed])
 
 	useEffect(() => {
 		setFirstName(localStorage.getItem("firstname"))

@@ -10,7 +10,6 @@ import {
 import "../css/App.css"
 import { db } from "../firebase"
 import { collection, addDoc } from "firebase/firestore"
-//import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
 import Error from "./ErrorPage"
 
 export default function AddService() {

@@ -26,21 +26,13 @@ function PopupWithLongText() {
 
 	return (
 		<div>
-			<Typography>
-				<Link
-					href="#"
-					onClick={handleClick}
-				>
-					Show Long Text
-				</Link>
-			</Typography>
 			<Popover
 				id={id}
 				open={open}
 				anchorEl={anchorEl}
 				onClose={handleClose}
 				anchorOrigin={{
-					vertical: "bottom",
+					vertical: "top",
 					horizontal: "center",
 				}}
 				transformOrigin={{
