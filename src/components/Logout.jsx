@@ -9,9 +9,7 @@ function Logout() {
   const {setSigned, setSigner} = useAuth()
   const navigate = useNavigate()
   localStorage.clear();
-  setSigned(false)
-  setSigner("")
-  
+  setSigned(false)  
 
   setTimeout(() => navigate('/login'), 1000)
 

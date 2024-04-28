@@ -39,7 +39,7 @@ const Login = () => {
 	console.log(`Api key: ${import.meta.env.VITE_JRLA_MOTO_API_KEY}`)
 	useEffect(() => {
 		getUsers()
-	})
+	},[])
 
 	/*
 	function credentials(loginFormData) {
