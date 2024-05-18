@@ -7,6 +7,8 @@ import {
 	signInWithEmailAndPassword,
 	getAuth,
 	onAuthStateChanged,
+	signInWithPopup,
+	GoogleAuthProvider,
 } from "firebase/auth"
 //import { db } from "../firebase"
 import "../css/Login.css"
@@ -23,10 +25,10 @@ const Login = () => {
 	})
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {		
+		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				alert(`Käyttäjä ${user.email} on jo kirjautunut`)	
-				setSigned(true)			
+				alert(`Käyttäjä ${user.email} on jo kirjautunut`)
+				setSigned(true)
 				return true
 			} else {
 				return false
@@ -34,25 +36,24 @@ const Login = () => {
 		})
 	}, [])
 
-
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault()
-		await signInWithEmailAndPassword(
-			auth,
-			loginFormData.username,
-			loginFormData.password
-		)
-			.then((userCredential) => {
-				const user = userCredential.user
-				console.log("User", user)
+		const provider = new GoogleAuthProvider()
+		signInWithPopup(auth, provider)
+			.then((result) => {
+				const credential =
+					GoogleAuthProvider.credentialFromResult(result)
+				const token = credential.accessToken
+				const user = result.user
 				setSigned(true)
-				navigate("/")
+				console.log("User signed in with Google:", user)
 			})
 			.catch((error) => {
 				const errorCode = error.code
 				const errorMessage = error.message
-				console.log(errorCode, errorMessage)
-				setError(errorMessage)
+				const email = error.email
+				const credential = GoogleAuthProvider.credentialFromError(error)
+				console.log("Error signing with Google:", errorCode, errorMessage)
 			})
 	}
 
@@ -89,13 +90,12 @@ const Login = () => {
 							placeholder="Salasana"
 							value={loginFormData.password}
 						/>
-						<button>Kirjaudu</button>
+						<button>Kirjaudu Googlen tunnareilla</button>
 					</form>
 				</div>
-			):
-			navigate('/')
-			}
-			
+			) : (
+				navigate("/")
+			)}
 		</div>
 	)
 }
