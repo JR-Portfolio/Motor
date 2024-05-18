@@ -1,21 +1,22 @@
-import { useContext, useEffect } from "react";
-import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { useState } from "react";
 import { useAuth } from "./AppContentext";
 import "../css/Login.css";
 import { useNavigate } from "react-router-dom";
-
+import {getAuth, signOut} from "firebase/auth"
 
 function Logout() {
-  const {setSigned, setSigner} = useAuth()
+  const [message, setMessage] = useState(null)
   const navigate = useNavigate()
   localStorage.clear();
-  setSigned(false)  
+  
+  const auth = getAuth()
+  signOut(auth).then(() => setMessage("Olette potkittu ulos"))
 
   setTimeout(() => navigate('/login'), 1000)
 
   return (
     <div className="logout-container">      
-    <h3 style = {{textAlign:"center"}}>Olette poistuneet</h3>
+    {message ? <h3 style = {{textAlign:"center"}}>{message}</h3> : <h3>Olette viellä kirjautuneena</h3>}
     </div>
   );
 }

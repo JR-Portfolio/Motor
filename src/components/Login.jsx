@@ -23,15 +23,12 @@ const Login = () => {
 	})
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			console.log("user = ", user.email)
-			console.log("setSigned: ", setSigned)
+		onAuthStateChanged(auth, (user) => {		
 			if (user) {
 				alert(`Käyttäjä ${user.email} on jo kirjautunut`)	
 				setSigned(true)			
 				return true
 			} else {
-				alert(`Tiliä ei löydy`)
 				return false
 			}
 		})
