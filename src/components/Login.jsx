@@ -19,15 +19,10 @@ const Login = () => {
 	const [error, setError] = useState("")
 	const navigate = useNavigate()
 	const { signed, setSigned } = useAuth()
-	const [loginFormData, setLoginFormData] = useState({
-		username: "",
-		password: "",
-	})
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				alert(`Käyttäjä ${user.email} on jo kirjautunut`)
+			if (user) {				
 				setSigned(true)
 				return true
 			} else {
@@ -53,18 +48,12 @@ const Login = () => {
 				const errorMessage = error.message
 				const email = error.email
 				const credential = GoogleAuthProvider.credentialFromError(error)
-				console.log("Error signing with Google:", errorCode, errorMessage)
+				console.log(
+					"Error signing with Google:",
+					errorCode,
+					errorMessage
+				)
 			})
-	}
-
-	console.log("kirjaantunut ? ", signed)
-
-	function handleChange(e) {
-		const { name, value } = e.target
-		setLoginFormData((prev) => ({
-			...prev,
-			[name]: value,
-		}))
 	}
 
 	return (
@@ -76,20 +65,6 @@ const Login = () => {
 						onSubmit={handleSubmit}
 						className="login-form"
 					>
-						<input
-							name="username"
-							onChange={handleChange}
-							type="email"
-							placeholder="Sähköposti - käyttäjätunnuksena"
-							value={loginFormData.username}
-						/>
-						<input
-							name="password"
-							onChange={handleChange}
-							type="password"
-							placeholder="Salasana"
-							value={loginFormData.password}
-						/>
 						<button>Kirjaudu Googlen tunnareilla</button>
 					</form>
 				</div>
